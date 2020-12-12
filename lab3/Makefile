@@ -1,11 +1,18 @@
-hello: main.o calculator.o
-	g++ -o hello main.o calculator.o
-main.o: main.cpp 
-	g++ -c main.cpp
-calculator.o: calculator.cpp
-	g++ -c calculator.cpp
-clean: 
-	rm hello
-	rm main.o
-	rm calculator.o
-	
+.PHONY: build
+
+build:
+	g++ ./lab_app.cpp -o lab_app
+
+default_goal: build def 
+
+.PHONY: def
+
+def:
+	./lab_app -l -h -v -V100
+
+.PHONY: run
+
+run:
+	./lab_app -o
+
+.DEFAULT_GOAL:=default_goal
